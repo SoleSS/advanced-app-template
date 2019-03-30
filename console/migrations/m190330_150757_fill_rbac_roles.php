@@ -24,6 +24,17 @@ class m190330_150757_fill_rbac_roles extends Migration
             ['CmsCategoryAdmin', 2, time(), time(), ],
             ['CmsTagAdmin', 2, time(), time(), ],
         ]);
+
+        $this->batchInsert('auth_item_child', ['parent', 'child'], [
+            ['Administrator', 'GlobalUserAdmin'],
+            ['Administrator', 'FileManagerAccess'],
+            ['Administrator', 'GlobalReadAccess'],
+            ['Administrator', 'GlobalWriteAccess'],
+            ['Administrator', 'OwnWriteAccess'],
+            ['Administrator', 'CmsArticleAdmin'],
+            ['Administrator', 'CmsCategoryAdmin'],
+            ['Administrator', 'CmsTagAdmin'],
+        ]);
     }
 
     /**
