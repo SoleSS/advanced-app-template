@@ -35,9 +35,23 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
+
+    $menuItems = [];
+
+    if (!Yii::$app->user->isGuest) {
+        $menuItems = [
+            ['label' => '<span class="glyphicon glyphicon-home"></span>', 'url' => ['/site/index']],
+            ['label' => '<span class="glyphicon glyphicon-hdd"></span>', 'url' => ['/elfinder/manager'], 'linkOptions' => ['target'=>'_blank']],
+            ['label' => '<span class="glyphicon glyphicon-user"></span>', 'url' => ['/user/admin']],
+        ];
+
+        if (\Yii::$app->hasModule('cms')) {
+            $menuItems[] = ['label' => '<span class="glyphicon glyphicon-inbox"></span>', 'url' => ['/cms/cms-category/index']];
+            $menuItems[] = ['label' => '<span class="glyphicon glyphicon-pencil"></span>', 'url' => ['/cms/cms-article/index']];
+            $menuItems[] = ['label' => '<span class="glyphicon glyphicon-tags"></span>', 'url' => ['/cms/cms-tag/index']];
+        }
+    }
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/user/security/login']];
     } else {
@@ -53,6 +67,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
+        'encodeLabels' => false,
     ]);
     NavBar::end();
     ?>
