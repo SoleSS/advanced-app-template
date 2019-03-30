@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace common\models\base;
 
 /**
  * User ActiveRecord model.
@@ -35,13 +35,7 @@ namespace common\models;
  *
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
-class User extends \common\models\base\User
+class User extends \dektrium\user\models\User
 {
-    public static function usersList() {
-        return \yii\helpers\ArrayHelper::map(static::find()
-                    ->select(['id', 'username'])
-                    ->orderBy('id ASC')
-                    ->asArray()
-                    ->all(), 'id', 'username');
-    }
+
 }
