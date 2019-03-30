@@ -58,3 +58,20 @@ frontend
 vendor/                  contains dependent 3rd-party packages
 environments/            contains environment-based overrides
 ```
+
+
+INSTALLATION
+-------------------
+
+```
+composer install
+./init
+```
+
+
+```
+php yii migrate/up --migrationPath=@yii/rbac/migrations
+php yii migrate/up --migrationPath=@yii/rbac/migrations
+php yii migrate/up --migrationPath=@vendor/soless/yii2-simple-cms/migrations
+```
+
