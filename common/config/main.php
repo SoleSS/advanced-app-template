@@ -1,5 +1,7 @@
 <?php
 return [
+    'language' => 'ru-RU',
+    'name' => 'Заготовка проекта',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -12,6 +14,8 @@ return [
             // or if need different configuration for frontend and backend you may
             // configure in needed configs
 
+            'admins' => ['admin', ],
+            'adminPermission' => 'Администраторы',
             'modelMap' => [
                 'User' => 'common\models\User',
             ],
