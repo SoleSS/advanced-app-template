@@ -15,7 +15,7 @@ return [
             // configure in needed configs
 
             'admins' => ['admin', ],
-            'adminPermission' => 'Администраторы',
+            'adminPermission' => 'GlobalUserAdmin',
             'modelMap' => [
                 'User' => 'common\models\User',
             ],
@@ -25,11 +25,6 @@ return [
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
-        'request' => [
-            'parsers' => [
-                'application/json' => 'yii\web\JsonParser',
-            ]
         ],
     ],
 ];

@@ -19,7 +19,7 @@ return [
     'controllerMap' => [
         'elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',
-            'access' => ['fileManagerAccess', 'Администраторы'], //глобальный доступ к фаил менеджеру @ - для авторизорованных , ? - для гостей , чтоб открыть всем ['@', '?']
+            'access' => ['FileManagerAccess', 'Administrator'], //глобальный доступ к фаил менеджеру @ - для авторизорованных , ? - для гостей , чтоб открыть всем ['@', '?']
             'disabledCommands' => ['netmount'], //отключение ненужных команд https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#commands
             'roots' => [
                 [
@@ -27,20 +27,20 @@ return [
                     'baseUrl'=>'',
                     'path' => 'files/global',
                     'name' => 'Общие файлы',
-                    'access' => ['read' => 'globalReadAccess', 'write' => 'globalWriteAccess', ],
+                    'access' => ['read' => 'GlobalReadAccess', 'write' => 'GlobalWriteAccess', ],
                 ],
                 [
                     'class' => 'mihaildev\elfinder\volume\UserPath',
                     'path'  => 'files/user_{id}',
                     'name'  => 'Мои файлы',
-                    'access' => ['read' => '@', 'write' => 'ownWriteAccess', ],
+                    'access' => ['read' => '@', 'write' => 'OwnWriteAccess', ],
                 ],
                 [
                     'basePath' => '@backend/web',
                     'baseUrl' => '',
                     'path' => 'img',
                     'name' => 'Файлы админки',
-                    'access' => ['read' => 'globalWriteAccess', 'write' => 'globalWriteAccess', ],
+                    'access' => ['read' => 'GlobalWriteAccess', 'write' => 'GlobalWriteAccess', ],
                 ]
             ],
             'watermark' => [
@@ -57,6 +57,9 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
