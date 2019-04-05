@@ -88,4 +88,14 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+
+    public function actionArticle($id) {
+        $model = CmsArticle::findOne((int)$id);
+
+        if ($model == null) throw new NotFoundHttpException('Материал не найден!');
+
+        return $this->render('article', [
+            'model' => $model
+        ]);
+    }
 }
