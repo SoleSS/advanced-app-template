@@ -41,7 +41,14 @@ return [
                     'path' => 'img',
                     'name' => 'Файлы админки',
                     'access' => ['read' => 'GlobalWriteAccess', 'write' => 'GlobalWriteAccess', ],
-                ]
+                ],
+                [
+                    'basePath' => '@frontend/web',
+                    'baseUrl' => '',
+                    'path' => 'files',
+                    'name' => 'Файлы фронтенда',
+                    'access' => ['read' => 'GlobalReadAccess', 'write' => 'GlobalWriteAccess', ],
+                ],
             ],
             'watermark' => [
                     'source'         => __DIR__.'/logo.png', // Path to Water mark image
@@ -57,9 +64,6 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
-            'parsers' => [
-                'application/json' => 'yii\web\JsonParser',
-            ]
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
