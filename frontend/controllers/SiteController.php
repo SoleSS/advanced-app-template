@@ -99,4 +99,44 @@ class SiteController extends Controller
             'model' => $model
         ]);
     }
+    
+    public function actionArticles(array $catids, $title = null, int $order = 0) {
+        $query = CmsArticle::find()
+                    ->joinWith(['cmsCategories', ])
+                    ->where(['cms_category.id' => $catids])
+                    ->andWhere(['cms_article.published' => true])
+                    ->andWhere(['<=', 'publish_up', date('Y-m-d H:i:s')])
+                    ->andWhere(['>=', 'publish_down', date('Y-m-d H:i:s')]);
+
+        switch ($order) {
+            case 0:
+            default:
+                $query->orderBy('created_at DESC');
+                break;
+        }
+
+        $this->view->params['title'] = $title;
+        if (count($catids) == 1) {
+            $this->view->params['title'] = CmsCategory::findOne($catids[0])->title;
+        }
+
+        //if (empty($title)) 
+            //$title = implode(', ', ArrayHelper::getColumn(Category::find()->select('title')->where(['IN', 'id', $catids])->all(), 'title'));
+
+        $pagination = new Pagination([
+            'defaultPageSize' => Yii::$app->params['defaultPageSize'] ?? 20,
+            'totalCount' => $query->count(),
+        ]);
+
+        $models = $query->offset($pagination->offset)
+                    ->limit($pagination->limit)
+                    ->all();
+
+        return $this->render('blog', [
+            'title' => $title,
+            'models' => $models,
+            'pagination' => $pagination,
+        ]);
+
+    }
 }
