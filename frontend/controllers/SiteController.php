@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use frontend\models\ContactForm;
 use common\models\CmsArticle;
+use common\models\CmsCategory;
 use yii\data\Pagination;
 
 /**
