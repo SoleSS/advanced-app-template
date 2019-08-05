@@ -46,5 +46,27 @@ namespace common\models;
  */
 class CmsArticle extends base\CmsArticle
 {
+    public function hasGallery() {
+        if (empty($this->gallery)) return false;
 
+        $paths = \yii\helpers\ArrayHelper::getColumn($this->gallery, 'path');
+        if (!empty(implode('', $paths))) return true;
+
+        return false;
+    }
+
+    public function hasYTVideos() {
+        $medias = array_unique(\yii\helpers\ArrayHelper::getColumn($this->medias, 'type'));
+        if (in_array('youtube-video', $medias)) return true;
+
+        return false;
+    }
+  
+    public function getIntroImage() {
+        $image = null;
+
+        if ($this->show_image && !empty($this->image)) $image = $this->image;
+
+        return $image;
+    }
 }
