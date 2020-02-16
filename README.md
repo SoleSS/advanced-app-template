@@ -73,6 +73,7 @@ composer install
 php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
 php yii migrate/up --migrationPath=@yii/rbac/migrations
 php yii migrate/up --migrationPath=@vendor/soless/yii2-simple-cms/migrations
+php yii migrate/up
 ```
 
 If you are using MariaDB:
