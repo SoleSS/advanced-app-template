@@ -20,9 +20,9 @@ class m190330_150757_fill_rbac_roles extends Migration
             ['GlobalReadAccess', 2, time(), time(), ],
             ['GlobalWriteAccess', 2, time(), time(), ],
             ['OwnWriteAccess', 2, time(), time(), ],
-            ['CmsArticleAdmin', 2, time(), time(), ],
-            ['CmsCategoryAdmin', 2, time(), time(), ],
-            ['CmsTagAdmin', 2, time(), time(), ],
+            //['CmsArticleAdmin', 2, time(), time(), ],
+            //['CmsCategoryAdmin', 2, time(), time(), ],
+            //['CmsTagAdmin', 2, time(), time(), ],
         ]);
 
         $this->batchInsert('auth_item_child', ['parent', 'child'], [
@@ -31,9 +31,9 @@ class m190330_150757_fill_rbac_roles extends Migration
             ['Administrator', 'GlobalReadAccess'],
             ['Administrator', 'GlobalWriteAccess'],
             ['Administrator', 'OwnWriteAccess'],
-            ['Administrator', 'CmsArticleAdmin'],
-            ['Administrator', 'CmsCategoryAdmin'],
-            ['Administrator', 'CmsTagAdmin'],
+            //['Administrator', 'CmsArticleAdmin'],
+            //['Administrator', 'CmsCategoryAdmin'],
+            //['Administrator', 'CmsTagAdmin'],
         ]);
     }
 
