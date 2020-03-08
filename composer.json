@@ -26,7 +26,11 @@
         "npm-asset/basscss-ui-utility-groups": "^1.0",
         "npm-asset/basscss": "^9.0",
         "npm-asset/basscss-basic": "^1.0",
-        "npm-asset/basscss-addons": "^1.0"
+        "npm-asset/basscss-addons": "^1.0",
+        "rmrevin/yii2-fontawesome": "~3",
+        "yiisoft/yii2-httpclient": "^2.0",
+        "2amigos/yii2-file-upload-widget": "~1.0",
+        "yiisoft/yii2-sphinx": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

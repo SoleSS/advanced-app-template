@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -76,6 +77,24 @@ AppAsset::register($this);
         <p class="pull-right"></p>
     </div>
 </footer>
+
+<?php if (Yii::$app->request->cookies->getValue('showAcceptCookiesNotify', true)) : ?>
+    <div class="fixed-bottom cookie-accept-policy-wrap bg-dark-alpha py-2">
+        <div class="container">
+            <div class="row h-100">
+                <div class="col-md-3 my-auto mb-1 text-center">
+                    Мы используем файлы-cookie
+                </div>
+                <div class="col-md-7 mb-1">
+                    Продолжая использовать данный веб-сайт, вы соглашаетесь с тем, что сайт <?= $_SERVER['SERVER_NAME'] ?> может <a href="<?= Url::toRouter(['/site/cookies']) ?>">использовать файлы «cookie»</a> в целях хранения ваших учетных данных, параметров и предпочтений, оптимизации работы веб-сайта.
+                </div>
+                <div class="col-md-2 my-auto">
+                    <a href="<?= Url::toRoute(['/site/accept-cookies-policy']) ?>" class="btn btn-light w-100">Принять</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 
 <?php $this->endBody() ?>
 </body>

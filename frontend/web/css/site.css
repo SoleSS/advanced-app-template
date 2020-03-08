@@ -118,3 +118,14 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.cookie-accept-policy-wrap {
+    color: #fff;
+}
+.cookie-accept-policy-wrap a:not(.btn-light), .cookie-accept-policy-wrap a:not(.btn-light):hover {
+    color: #fff;
+}
+
+.bg-dark-alpha {
+    background-color: #343a40f0 !important;
+}

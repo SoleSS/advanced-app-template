@@ -141,4 +141,19 @@ class SiteController extends Controller
         ]);
 
     }
+
+    public function actionAcceptCookiesPolicy() {
+        $cookies = Yii::$app->response->cookies;
+
+        $cookies->add(new \yii\web\Cookie([
+            'name' => 'showAcceptCookiesNotify',
+            'value' => false,
+        ]));
+
+        return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+    }
+
+    public function actionCookies() {
+        return $this->render('cookies');
+    }
 }
