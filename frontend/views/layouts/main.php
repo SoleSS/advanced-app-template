@@ -85,13 +85,16 @@ AppAsset::register($this);
         <div class="container">
             <div class="row h-100">
                 <div class="col-md-3 my-auto mb-1 text-center">
-                    Мы используем файлы-cookie
+                    <?= \Yii::t('common', 'Site uses cookies') ?>
                 </div>
                 <div class="col-md-7 mb-1">
-                    Продолжая использовать данный веб-сайт, вы соглашаетесь с тем, что сайт <?= $_SERVER['SERVER_NAME'] ?> может <a href="<?= Url::toRoute(['/site/cookies']) ?>">использовать файлы «cookie»</a> в целях хранения ваших учетных данных, параметров и предпочтений, оптимизации работы веб-сайта.
+                    <?= \Yii::t('common', 'By using this site you accept our terms of usage', [
+                        'server_name' => $_SERVER['SERVER_NAME'],
+                        'cookies_link' => Url::toRoute(['/site/cookies']),
+                    ]) ?>
                 </div>
                 <div class="col-md-2 my-auto">
-                    <a href="<?= Url::toRoute(['/site/accept-cookies-policy']) ?>" class="btn btn-light w-100">Принять</a>
+                    <a href="<?= Url::toRoute(['/site/accept-cookies-policy']) ?>" class="btn btn-light w-100"><?= \Yii::t('common', 'OK') ?></a>
                 </div>
             </div>
         </div>
