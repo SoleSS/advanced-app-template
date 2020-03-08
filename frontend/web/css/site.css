@@ -129,3 +129,14 @@ a.desc:after {
 .bg-dark-alpha {
     background-color: #343a40f0 !important;
 }
+
+.navbar-dark {
+    background-color: #222;
+}
+
+.navbar-dark a.nav-link, .navbar-dark a.nav-link:hover {
+    color:#fff;
+}
+.navbar-dark a.nav-link:hover {
+    text-decoration: underline;
+}

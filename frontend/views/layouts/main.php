@@ -33,17 +33,17 @@ AppAsset::register($this);
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-dark navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Home', 'url' => ['/site/index'], 'linkOptions' => [], ],
+        ['label' => 'About', 'url' => ['/site/about'], 'linkOptions' => [], ],
+        ['label' => 'Contact', 'url' => ['/site/contact'], 'linkOptions' => [], ],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/user/registration/register']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/user/security/login']];
+        $menuItems[] = ['label' => 'Signup', 'url' => ['/user/registration/register'], 'linkOptions' => [], ];
+        $menuItems[] = ['label' => 'Login', 'url' => ['/user/security/login'], 'linkOptions' => [], ];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/user/security/logout'], 'post')
@@ -54,10 +54,12 @@ AppAsset::register($this);
             . Html::endForm()
             . '</li>';
     }
+
     echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
+        'options' => ['class' =>'nav-pills'], // set this to nav-tab to get tab-styled navigation
     ]);
+
     NavBar::end();
     ?>
 
