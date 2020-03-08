@@ -5,4 +5,10 @@ return [
     'supportEmail' => 'support@example.com',
     'user.passwordResetTokenExpire' => 3600,
     'frontendFilesRoot' => null,
+    'organizationData' => [
+        'firmName' => '',
+        'firmNameSecondForm' => '',
+        'address' => '',
+        'postAddress' => '',
+    ]
 ];
