@@ -9,7 +9,7 @@ $params = \Yii::$app->params;
 $this->title = 'Согласие на обработку персональных данных';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-about">
+<div class="site-privacy">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Настоящим, в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных», вы подтверждаете свое <b>согласие на обработку</b> <?= $params['organizationData']['firmNameSecondForm'] ?> юридический адрес: <?= $params['organizationData']['address'] ?> <b>ваших</b> персональных данных.</p>

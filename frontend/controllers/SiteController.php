@@ -156,4 +156,8 @@ class SiteController extends Controller
     public function actionCookies() {
         return $this->render('cookies');
     }
+
+    public function actionPrivacyRules() {
+        return $this->render('privacy-rules');
+    }
 }
