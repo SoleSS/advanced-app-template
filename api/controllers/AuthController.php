@@ -1,63 +1,12 @@
 <?php
 namespace api\controllers;
 
-use Yii;
-use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-
 /**
  * Auth controller
  */
 class AuthController extends \yii\rest\Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => \yii\filters\AccessControl::className(),
-                'rules' => [
-                    ['allow' => true, 'actions' => ['gen-jwt-token', ], 'roles' => ['?']],
-                    ['allow' => true, 'actions' => ['gen-jwt-token', ], 'roles' => ['@']],
-                ],
-            ],
-            'verbs' => [
-                'class' => \yii\filters\VerbFilter::className(),
-                'actions' => [
-                    'login' => ['post'],
-                    'logout' => ['post'],
-                    'password-reset-request' => ['post'],
-                    'gen-jwt-token' => ['post'],
-                ],
-            ],
-        ];
-    }
-
-    public function beforeAction($action) {
-        if ($action->id == 'gen-jwt-token') {
-            $this->enableCsrfValidation = false;
-        }
-
-        return parent::beforeAction($action);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-        ];
-    }
-
-
     public function actionGenJwtToken() {
         $data = \Yii::$app->getRequest()->post();
 

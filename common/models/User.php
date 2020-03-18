@@ -44,4 +44,52 @@ class User extends \common\models\base\User
                     ->asArray()
                     ->all(), 'id', 'username');
     }
+
+    public function restArray() {
+        return [
+            'id' => $this->id,
+            'username' => $this->username,
+            'email' => $this->email,
+            'confirmed_at' => $this->confirmed_at,
+            'created_at' => $this->created_at,
+            'last_login_at' => $this->last_login_at,
+        ];
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        $token = \Yii::$app->jwt->getParser()->parse((string) $token); // Parses from a string
+        $signer = new \Lcobucci\JWT\Signer\Hmac\Sha256();
+
+        $data = \Yii::$app->jwt->getValidationData(); // It will use the current time to validate (iat, nbf and exp)
+        $data->setIssuer(\Yii::$app->params['jwt']['Issuer']);
+        $data->setAudience(\Yii::$app->params['jwt']['Audience']);
+        $data->setId(\Yii::$app->params['jwt']['Id']);
+
+        $uid = $token->getClaim('uid');
+
+        if ($token->validate($data) && $token->verify($signer, \Yii::$app->jwt->key)) {
+            return static::findById($uid);
+        }
+
+        return null;
+    }
+
+    public static function findById($id) {
+        return static::find()
+            ->where(['id' => (int)$id])
+            ->andWhere(['NOT', ['confirmed_at' => null]])
+            ->andWhere(['blocked_at' => null])
+            ->limit(1)
+            ->one();
+    }
+
+    public static function findByUsername($username) {
+        return static::find()
+            ->where(['username' => $username])
+            ->andWhere(['NOT', ['confirmed_at' => null]])
+            ->andWhere(['blocked_at' => null])
+            ->limit(1)
+            ->one();
+    }
 }

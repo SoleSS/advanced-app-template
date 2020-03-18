@@ -26,6 +26,10 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'jwt' => [
+            'class' => \sizeg\jwt\Jwt::class,
+            'key'   => 'secret',
+        ],
         'i18n' => [
             'translations' => [
                 'common*' => [
