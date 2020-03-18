@@ -10,5 +10,10 @@ return [
         'firmNameSecondForm' => '',
         'address' => '',
         'postAddress' => '',
-    ]
+    ],
+    'jwt' => [
+        'Issuer' => 'Issuer',
+        'Audience' => 'Audience',
+        'Id' => 'Id',
+    ],
 ];

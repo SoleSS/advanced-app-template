@@ -80,3 +80,11 @@ If you are using MariaDB:
 ```
 https://github.com/SAM-IT/yii2-mariadb
 ```
+
+Update JWT configuration (common\config\main.php):
+```
+    'jwt' => [
+      'class' => \sizeg\jwt\Jwt::class,
+      'key'   => 'VeryImportantJWTSecret',
+    ],
+```

@@ -28,6 +28,10 @@ return [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
         ],
+        'jwt' => [
+            'class' => \sizeg\jwt\Jwt::class,
+            'key'   => 'VeryImportantJWTSecret',
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -44,6 +48,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+
+                ['pattern' => '<id:rss>', 'route' => '/site/rss', 'suffix' => '.xml'],
+                ['pattern' => '<id:sitemap>', 'route' => '/site/sitemap', 'suffix' => '.xml'],
             ],
         ],
     ],
