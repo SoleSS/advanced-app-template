@@ -2,6 +2,12 @@
 
 namespace common\models;
 
+use dektrium\user\Finder;
+use dektrium\user\Mailer;
+use dektrium\user\Module;
+use dektrium\user\models\Account;
+use dektrium\user\models\Profile;
+
 /**
  * User ActiveRecord model.
  *
