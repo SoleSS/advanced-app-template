@@ -63,7 +63,7 @@ class AuthController extends \yii\rest\Controller
             'roles' => array_keys(\Yii::$app->authManager->getRoles()),
             'username' => $identity->username,
             'email' => $identity->email,
-            'name' => $identity->profile->name,
+            'profile' => $identity->profile,
         ];
     }
 
