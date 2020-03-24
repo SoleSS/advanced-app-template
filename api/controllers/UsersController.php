@@ -9,18 +9,10 @@ use common\models\User;
  */
 class UsersController extends \yii\rest\Controller
 {
-    public function actions()
-    {
-        return [
-            'options' => [
-                'class' => 'yii\rest\OptionsAction',
-            ],
-        ];
-    }
-
     public function behaviors()
     {
         $behaviors = parent::behaviors();
+        unset($behaviors['authenticator']);
 
         $behaviors['corsFilter'] = [
             'class' => \yii\filters\Cors::className(),
@@ -38,6 +30,23 @@ class UsersController extends \yii\rest\Controller
 
 
         return $behaviors;
+    }
+
+    public function runAction($id, $params = [])
+    {
+        // Подменить action если запрос типа OPTIONS
+        if ('OPTIONS' === \Yii::$app->request->getMethod())
+        {
+            return parent::runAction('options', $params);
+        } else
+        {
+            return parent::runAction($id, $params);
+        }
+    }
+
+    public function actionOptions()
+    {
+        return;
     }
 
     public function actionMyInfo () {
