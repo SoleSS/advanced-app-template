@@ -9,36 +9,8 @@ use yii\web\BadRequestHttpException;
 /**
  * Auth controller
  */
-class AuthController extends \yii\rest\Controller
+class AuthController extends BaseRestController
 {
-    public function actions()
-    {
-        return [
-            'options' => [
-                'class' => 'yii\rest\OptionsAction',
-            ],
-        ];
-    }
-
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-
-        $behaviors['corsFilter'] = [
-            'class' => \yii\filters\Cors::class,
-            'cors' => [
-                'Origin'                                => ['*'],
-                'Access-Control-Allow-Origin'           => ['*'],
-                'Access-Control-Allow-Credentials'      => false,
-                'Access-Control-Request-Method'         => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
-                'Access-Control-Request-Headers'        => ['*'],
-                'Access-Control-Max-Age'                => 60,
-            ],
-        ];
-
-        return $behaviors;
-    }
-
     private function getJwtToken(User $identity) {
         $signer = new \Lcobucci\JWT\Signer\Hmac\Sha256();
         $expiration = time() + 10800;
